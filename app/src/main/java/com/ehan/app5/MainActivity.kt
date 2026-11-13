@@ -95,7 +95,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Header() {
+fun Header(
+    toast1: (String) -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -104,9 +106,7 @@ fun Header() {
     ) {
         IconButton(
             onClick = {
-                scope.launch {
-                    snackbarHostState.showSnackbar("Menu Navigasi")
-                }
+                toast1("Menu Navigasi")
             },
             modifier = Modifier.testTag("open_drawer_button"),
             colors = IconButtonDefaults.iconButtonColors(
@@ -128,9 +128,7 @@ fun Header() {
 
         IconButton(
             onClick = {
-                scope.launch {
-                    snackbarHostState.showSnackbar("on clear chat")
-                }
+                toast1("on clear chat")
             },
             modifier = Modifier.testTag("clear_chat_button"),
             colors = IconButtonDefaults.iconButtonColors(
